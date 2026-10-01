@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Gym - حجز مدرب شخصي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- الشريط العلوي -->
+    <nav class="navbar" style="position: relative; background: #000;">
+        <div class="logo">
+            <h2>Apex Gym</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="shop.html">المتجر</a></li>
+            <li><a href="trainer.html" style="color: #ff0055;">حجز مدرب</a></li>
+        </ul>
+    </nav>
+
+    <!-- سكشن حجز المدرب -->
+    <section class="trainer-section">
+        <div class="trainer-container">
+            <h2 class="section-title">احجز مدربك الشخصي (PT)</h2>
+            <p class="trainer-subtitle">اختر الكابتن المناسب لهدفك (تضخيم، تخسيس، أو لياقة بدنية) وحدد موعد جلستك الأولى.</p>
+            
+            <div class="trainer-grid">
+                
+                <!-- مدرب 1 -->
+                <div class="trainer-card" data-trainer="كابتن أحمد إبراهيم (خبير كمال أجسَام وتضخيم)">
+                    <div class="trainer-img">
+                        <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=600&auto=format&fit=crop" alt="Trainer 1">
+                    </div>
+                    <div class="trainer-info">
+                        <h3>كابتن أحمد إبراهيم</h3>
+                        <span class="trainer-spec">خبير كمال أجسام وتضخيم</span>
+                        <p>أكثر من 7 سنوات خبرة في بناء العضلات الصافية وتعديل الأنظمة الغذائية.</p>
+                        <button class="btn-select-trainer" onclick="openBookingModal('كابتن أحمد إبراهيم')">احجز مع الكابتن 🏋️‍♂️</button>
+                    </div>
+                </div>
+
+                <!-- مدرب 2 -->
+                <div class="trainer-card" data-trainer="كابتن محمود حسن (متخصص كروس فيت ولياقة)">
+                    <div class="trainer-img">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop" alt="Trainer 2">
+                    </div>
+                    <div class="trainer-info">
+                        <h3>كابتن محمود حسن</h3>
+                        <span class="trainer-spec">متخصص كروس فيت ولياقة</span>
+                        <p>مدرب معتمد لرفع مستوى التحمل، حرق الدهون، وسرعة الاستشفاء.</p>
+                        <button class="btn-select-trainer" onclick="openBookingModal('كابتن محمود حسن')">احجز مع الكابتن 🏃‍♂️</button>
+                    </div>
+                </div>
+
+                <!-- مدرب 3 -->
+                <div class="trainer-card" data-trainer="كابتن يوسف خالد (تخسيس وتأهيل بدني)">
+                    <div class="trainer-img">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=600&auto=format&fit=crop" alt="Trainer 3">
+                    </div>
+                    <div class="trainer-info">
+                        <h3>كابتن يوسف خالد</h3>
+                        <span class="trainer-spec">تخسيس وتأهيل بدني</span>
+                        <p>متخصص في برامج إنقاص الوزن، التنشيف، وإصلاح الإصابات الرياضية.</p>
+                        <button class="btn-select-trainer" onclick="openBookingModal('كابتن يوسف خالد')">احجز مع الكابتن 🥊</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- نافذة منبثقة (Modal) لبيانات الحجز -->
+    <div id="booking-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="close-modal-btn" onclick="closeBookingModal()">&times;</button>
+            <h3>تأكيد حجز الموعد</h3>
+            <p id="selected-trainer-name" style="color: #00f2fe; font-weight: bold; margin-bottom: 20px;"></p>
+            
+            <form id="booking-form" onsubmit="submitBooking(event)">
+                <div class="form-group">
+                    <label>اسمك الكامل:</label>
+                    <input type="text" id="client-name" required placeholder="أدخل اسمك هنا...">
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف (واتساب):</label>
+                    <input type="tel" id="client-phone" required placeholder="01xxxxxxxx0">
+                </div>
+                <div class="form-group">
+                    <label>اليوم المفضل:</label>
+                    <input type="date" id="booking-date" required>
+                </div>
+                <button type="submit" class="btn-confirm-booking">إرسال الحجز عبر واتساب 📱</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="site-footer">
+        <div class="copyright">
+            <p>جميع الحقوق محفوظة &copy; 2026 لـ Apex Gym | تم التصميم بواسطة <span>محمد</span></p>
+        </div>
+    </footer>
+
+    <!-- سكربت الحجز -->
+    <script>
+        let chosenTrainer = '';
+
+        function openBookingModal(trainerName) {
+            chosenTrainer = trainerName;
+            document.getElementById('selected-trainer-name').textContent = 'المدرب المختار: ' + trainerName;
+            document.getElementById('booking-modal').classList.add('open');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.remove('open');
+        }
+
+        function submitBooking(e) {
+            e.preventDefault();
+            const name = document.getElementById('client-name').value;
+            const phone = document.getElementById('client-phone').value;
+            const date = document.getElementById('booking-date').value;
+
+            let message = `مرحباً، أرغب في حجز تدريب شخصي:%0A`;
+            message += `- المدرب: ${chosenTrainer}%0A`;
+            message += `- الاسم: ${name}%0A`;
+            message += `- الهاتف: ${phone}%0A`;
+            message += `- تاريخ الحجز: ${date}`;
+
+            window.open(`https://wa.me/201234567890?text=${message}`, '_blank');
+            closeBookingModal();
+        }
+    </script>
+</body>
+</html>

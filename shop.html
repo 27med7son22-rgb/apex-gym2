@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Gym - متجر المكملات الكامل</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="product.html">عرض التفاصيل</a>
+    <!-- الشريط العلوي للمتجر مع أيقونة السلة -->
+    <nav class="navbar" style="position: relative; background: #000;">
+        <div class="logo">
+            <h2>Apex Gym</h2>
+        </div>
+        <ul class="nav-links" style="align-items: center;">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="shop.html" style="color: #00f2fe;">المتجر</a></li>
+            <li>
+                <button id="cart-icon-btn" class="cart-icon-btn">
+                    🛒 السلة <span id="cart-count">0</span>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- قائمة السلة الجانبية (Drawer) -->
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-header">
+            <h3>سلة المشتريات</h3>
+            <button id="close-cart" class="close-cart-btn">&times;</button>
+        </div>
+        <div class="cart-items-container" id="cart-items">
+            <p class="empty-cart-msg">السلة فارغة حالياً</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>الإجمالي:</span>
+                <span id="cart-total-price">0 ج.م</span>
+            </div>
+            <button class="btn-checkout" onclick="checkoutWhatsApp()">إتمام الطلب عبر واتساب 📱</button>
+        </div>
+    </div>
+    <div id="cart-overlay" class="cart-overlay"></div>
+
+    <!-- سكشن المتجر الكامل -->
+    <section class="shop-section">
+        <h2 class="section-title">متجر المكملات الغذائية</h2>
+        <p style="color: #94a3b8; text-align: center; margin-top: -30px; margin-bottom: 40px; font-size: 1.1rem;">أفضل المكملات الأصلية لضمان أسرع نتائج في بناء العضلات وزيادة الطاقة.</p>
+        
+        <!-- أزرار الفلترة -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">الكل</button>
+            <button class="filter-btn" data-filter="protein">بروتين</button>
+            <button class="filter-btn" data-filter="creatine">كرياتين</button>
+            <button class="filter-btn" data-filter="energy">طاقة وأداء</button>
+            <button class="filter-btn" data-filter="health">صحة وعامة</button>
+        </div>
+
+        <!-- شبكة المنتجات (وعند الضغط على الصورة أو العنوان ينقل لصفحة التفاصيل) -->
+        <div class="shop-container shop-grid-full">
+            
+            <!-- المنتج 1 -->
+            <div class="product-card" data-category="protein" data-name="Gold Standard Whey" data-price="2500">
+                <div class="product-img-box" onclick="window.location.href='product.html'" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1579722821273-0f6c74a43662?q=80&w=600&auto=format&fit=crop" alt="Whey Protein">
+                </div>
+                <h3 class="product-title" onclick="window.location.href='product.html'" style="cursor: pointer;">Gold Standard Whey</h3>
+                <p class="product-desc">بروتين مصل اللبن النقي لبناء وتضخيم العضلات الصافية بسرعة.</p>
+                <div class="product-price">2,500 ج.م</div>
+                <button class="btn-add-cart">أضف إلى السلة 🛒</button>
+            </div>
+
+            <!-- المنتج 2 -->
+            <div class="product-card" data-category="creatine" data-name="Creatine Monohydrate" data-price="1200">
+                <div class="product-img-box" onclick="window.location.href='product.html'" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=600&auto=format&fit=crop" alt="Creatine">
+                </div>
+                <h3 class="product-title" onclick="window.location.href='product.html'" style="cursor: pointer;">Creatine Monohydrate</h3>
+                <p class="product-desc">يزيد القوة، التحمل والحجم العضلي أثناء التمارين الشاقة.</p>
+                <div class="product-price">1,200 ج.م</div>
+                <button class="btn-add-cart">أضف إلى السلة 🛒</button>
+            </div>
+
+            <!-- المنتج 3 -->
+            <div class="product-card" data-category="energy" data-name="C4 Original Pre-Workout" data-price="1800">
+                <div class="product-img-box" onclick="window.location.href='product.html'" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=600&auto=format&fit=crop" alt="Pre-Workout">
+                </div>
+                <h3 class="product-title" onclick="window.location.href='product.html'" style="cursor: pointer;">C4 Original Pre-Workout</h3>
+                <p class="product-desc">طاقة تفجيرية، تركيز ذهني عالي، وبومب عضلي طوال التمرين.</p>
+                <div class="product-price">1,800 ج.م</div>
+                <button class="btn-add-cart">أضف إلى السلة 🛒</button>
+            </div>
+
+            <!-- المنتج 4 -->
+            <div class="product-card" data-category="energy" data-name="BCAA Amino Energy" data-price="1400">
+                <div class="product-img-box" onclick="window.location.href='product.html'" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=600&auto=format&fit=crop" alt="BCAA">
+                </div>
+                <h3 class="product-title" onclick="window.location.href='product.html'" style="cursor: pointer;">BCAA Amino Energy</h3>
+                <p class="product-desc">للاستشفاء العضلي السريع ومنع الهدم العضلي بعد التمرين.</p>
+                <div class="product-price">1,400 ج.م</div>
+                <button class="btn-add-cart">أضف إلى السلة 🛒</button>
+            </div>
+
+            <!-- المنتج 5 -->
+            <div class="product-card" data-category="protein" data-name="Serious Mass Gainer" data-price="2900">
+                <div class="product-img-box" onclick="window.location.href='product.html'" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1550572017-edd951b55104?q=80&w=600&auto=format&fit=crop" alt="Mass Gainer">
+                </div>
+                <h3 class="product-title" onclick="window.location.href='product.html'" style="cursor: pointer;">Serious Mass Gainer</h3>
+                <p class="product-desc">سعرات حرارية عالية وبروتين مكثف لزيادة الوزن والكتلة.</p>
+                <div class="product-price">2,900 ج.م</div>
+                <button class="btn-add-cart">أضف إلى السلة 🛒</button>
+            </div>
+
+            <!-- المنتج 6 -->
+            <div class="product-card" data-category="health" data-name="Omega 3 Fish Oil" data-price="650">
+                <div class="product-img-box" onclick="window.location.href='product.html'" style="cursor: pointer;">
+                    <img src="https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?q=80&w=600&auto=format&fit=crop" alt="Omega 3">
+                </div>
+                <h3 class="product-title" onclick="window.location.href='product.html'" style="cursor: pointer;">Omega 3 Fish Oil</h3>
+                <p class="product-desc">دعم صحة القلب والمفاصل وتقليل الالتهابات الناتجة عن التمرين.</p>
+                <div class="product-price">650 ج.م</div>
+                <button class="btn-add-cart">أضف إلى السلة 🛒</button>
+            </div>
+
+        </div>
+
+        <!-- زر العودة للرئيسية -->
+        <div class="view-all-container">
+            <a href="index.html" class="btn-view-all">⬅ العودة للرئيسية</a>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="site-footer">
+        <div class="copyright">
+            <p>جميع الحقوق محفوظة &copy; 2026 لـ Apex Gym | تم التصميم بواسطة <span>محمد</span></p>
+        </div>
+    </footer>
+
+    <!-- زرار الواتساب العايم -->
+    <a href="https://wa.me/201234567890" class="whatsapp-btn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="35" height="35">
+    </a>
+
+    <!-- سكربت الفلترة والسلة -->
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const filterValue = button.getAttribute('data-filter');
+                productCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (filterValue === 'all' || cardCategory === filterValue) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        let cart = [];
+        const cartIconBtn = document.getElementById('cart-icon-btn');
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const closeCartBtn = document.getElementById('close-cart');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartCount = document.getElementById('cart-count');
+        const cartTotalPrice = document.getElementById('cart-total-price');
+
+        cartIconBtn.addEventListener('click', () => {
+            cartDrawer.classList.add('open');
+            cartOverlay.classList.add('open');
+        });
+
+        closeCartBtn.addEventListener('click', () => {
+            cartDrawer.classList.remove('open');
+            cartOverlay.classList.remove('open');
+        });
+
+        cartOverlay.addEventListener('click', () => {
+            cartDrawer.classList.remove('open');
+            cartOverlay.classList.remove('open');
+        });
+
+        const addToCartButtons = document.querySelectorAll('.btn-add-cart');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const card = e.target.closest('.product-card');
+                const name = card.getAttribute('data-name');
+                const price = parseInt(card.getAttribute('data-price'));
+
+                const existingItem = cart.find(item => item.name === name);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+
+                updateCartUI();
+                cartDrawer.classList.add('open');
+                cartOverlay.classList.add('open');
+            });
+        });
+
+        function updateCartUI() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            let totalCount = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="empty-cart-msg">السلة فارغة حالياً</p>';
+                cartCount.textContent = '0';
+                cartTotalPrice.textContent = '0 ج.م';
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                totalCount += item.quantity;
+
+                const cartItemEl = document.createElement('div');
+                cartItemEl.classList.add('cart-item');
+                cartItemEl.innerHTML = `
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <p>${item.price} ج.م × ${item.quantity}</p>
+                    </div>
+                    <button class="remove-item-btn" onclick="removeFromCart(${index})">🗑️</button>
+                `;
+                cartItemsContainer.appendChild(cartItemEl);
+            });
+
+            cartCount.textContent = totalCount;
+            cartTotalPrice.textContent = total + ' ج.م';
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert('السلة فارغة!');
+                return;
+            }
+            let message = 'مرحباً، أريد طلب المنتجات التالية:%0A';
+            let total = 0;
+            cart.forEach(item => {
+                message += `- ${item.name} (العدد: ${item.quantity}) - السعر: ${item.price * item.quantity} ج.م%0A`;
+                total += item.price * item.quantity;
+            });
+            message += `%0Aالإجمالي الكلي: ${total} ج.م`;
+            window.open(`https://wa.me/201234567890?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
